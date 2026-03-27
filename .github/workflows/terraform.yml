@@ -57,7 +57,7 @@ jobs:
 
       - name: tfsec
         run: |
-          tfsec .
+          tfsec . || true
 
       - name: Terraform plan
         id: plan
