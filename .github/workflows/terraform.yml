@@ -14,6 +14,7 @@ jobs:
   terraform:
     name: Terraform Plan and Apply
     runs-on: ubuntu-latest
+    environment: plan
 
     steps:
       - name: Checkout
@@ -71,8 +72,10 @@ jobs:
           path: tfplan
 
   terraform_apply:
-    name: Terraform Apply (manual)
+    name: Terraform Apply (with approval)
     runs-on: ubuntu-latest
+    needs: terraform
+    environment: production
     if: github.event_name == 'workflow_dispatch'
 
     steps:
@@ -91,13 +94,14 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
+      - name: Download terraform plan artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: terraform-plan
+
       - name: Terraform init
         run: |
           terraform init -input=false
-
-      - name: Terraform plan
-        run: |
-          terraform plan -out=tfplan -input=false
 
       - name: Terraform apply
         run: |
