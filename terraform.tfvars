@@ -1,17 +1,15 @@
-project_name = "XX"
-environment  = "Dev"
-owner        = "Vishal"
-aws_region   = "us-east-1"
-cluster_version = "1.29"
-
+project_name                         = "XX"
+environment                          = "Dev"
+owner                                = "Vishal"
+aws_region                           = "us-east-1"
+cluster_version                      = "1.29"
 cluster_endpoint_public_access       = true
 cluster_endpoint_public_access_cidrs = ["203.0.113.10/32"]
-
-availability_zones   = ["us-east-1a"]
-vpc_cidr             = "10.0.0.0/16"
-private_subnet_cidrs = ["10.0.1.0/24"]
-public_subnet_cidrs  = ["10.0.101.0/24"]
-intra_subnet_cidrs   = ["10.0.201.0/24"]
+availability_zones                   = ["us-east-1a"]
+vpc_cidr                             = "10.0.0.0/16"
+private_subnet_cidrs                 = ["10.0.1.0/24"]
+public_subnet_cidrs                  = ["10.0.101.0/24"]
+intra_subnet_cidrs                   = ["10.0.201.0/24"]
 
 node_groups = {
   dev = {
