@@ -16,7 +16,7 @@ output "oidc_issuer_url" {
   value = module.eks.oidc_issuer_url
 }
 output "oidc_provider_arn" {
-  value = module.iam.oidc_provider_arn
+  value = module.eks.oidc_provider_arn
 }
 
 output "secrets_kms_key_arn" {

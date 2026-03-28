@@ -52,7 +52,6 @@ module "eks" {
   cluster_endpoint_public_access_cidrs = var.cluster_endpoint_public_access_cidrs
   secrets_kms_key_arn                  = module.security.secrets_kms_key_arn
   cluster_role_arn                     = module.iam.cluster_role_arn
-  oidc_provider_arn                    = module.iam.oidc_provider_arn
   aws_region                           = var.aws_region
 }
 
@@ -89,7 +88,7 @@ module "addons" {
   enable_external_dns                 = var.enable_external_dns
   hosted_zone_id                      = var.hosted_zone_id
   enable_karpenter                    = var.enable_karpenter
-  oidc_provider_arn                   = module.iam.oidc_provider_arn
+  oidc_provider_arn                   = module.eks.oidc_provider_arn
   enable_argocd                       = var.enable_argocd
 
   depends_on = [module.node_groups]

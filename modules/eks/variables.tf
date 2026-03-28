@@ -8,10 +8,6 @@ variable "cluster_endpoint_public_access_cidrs" { type = list(string) }
 variable "secrets_kms_key_arn" { type = string }
 variable "cluster_role_arn" { type = string }
 variable "aws_region" { type = string }
-variable "oidc_provider_arn" {
-  type    = string
-  default = ""
-}
 variable "admin_role_arns" {
   type    = list(string)
   default = []

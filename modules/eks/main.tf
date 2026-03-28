@@ -96,6 +96,16 @@ resource "aws_eks_cluster" "this" {
   depends_on = [var.cluster_role_arn]
 }
 
+data "tls_certificate" "oidc" {
+  url = aws_eks_cluster.this.identity[0].oidc[0].issuer
+}
+
+resource "aws_iam_openid_connect_provider" "eks" {
+  client_id_list  = ["sts.amazonaws.com"]
+  thumbprint_list = [data.tls_certificate.oidc.certificates[0].sha1_fingerprint]
+  url             = aws_eks_cluster.this.identity[0].oidc[0].issuer
+}
+
 # ── CloudWatch log group for control-plane logs ───────────────────────────────
 resource "aws_cloudwatch_log_group" "eks" {
   name              = "/aws/eks/${var.name_prefix}-eks/cluster"
@@ -141,7 +151,7 @@ data "aws_iam_policy_document" "ebs_csi_assume" {
     actions = ["sts:AssumeRoleWithWebIdentity"]
     principals {
       type        = "Federated"
-      identifiers = [var.oidc_provider_arn]
+      identifiers = [aws_iam_openid_connect_provider.eks.arn]
     }
     condition {
       test     = "StringEquals"
