@@ -65,7 +65,7 @@ data "tls_certificate" "eks" {
 }
 
 resource "aws_iam_openid_connect_provider" "eks" {
-  count          = var.cluster_oidc_issuer_url != "" ? 1 : 0
+  count           = var.cluster_oidc_issuer_url != "" ? 1 : 0
   client_id_list  = ["sts.amazonaws.com"]
   thumbprint_list = [data.tls_certificate.eks[0].certificates[0].sha1_fingerprint]
   url             = var.cluster_oidc_issuer_url

@@ -43,11 +43,11 @@ resource "aws_security_group" "nodes" {
 
   # Control plane → nodes (kubelet, metrics)
   ingress {
-    from_port         = 1025
-    to_port           = 65535
-    protocol          = "tcp"
+    from_port       = 1025
+    to_port         = 65535
+    protocol        = "tcp"
     security_groups = [aws_security_group.cluster.id]
-    description       = "Control plane to kubelet"
+    description     = "Control plane to kubelet"
   }
 
   egress {

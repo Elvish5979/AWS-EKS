@@ -388,11 +388,11 @@ resource "helm_release" "argocd" {
 }
 
 data "aws_lb" "argocd" {
-  count = var.enable_argocd ? 1 : 0
+  count      = var.enable_argocd ? 1 : 0
   depends_on = [helm_release.argocd]
 
   tags = {
-    "kubernetes.io/service-name" = "argocd/argocd-server"
+    "kubernetes.io/service-name"                = "argocd/argocd-server"
     "kubernetes.io/cluster/${var.cluster_name}" = "owned"
   }
 }
