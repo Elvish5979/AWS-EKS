@@ -12,7 +12,7 @@ env:
 
 jobs:
   terraform:
-    name: Terraform Plan and Apply
+    name: Terraform Plan
     runs-on: ubuntu-latest
     environment: plan
 

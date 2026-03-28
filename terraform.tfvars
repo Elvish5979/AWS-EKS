@@ -5,11 +5,11 @@ aws_region                           = "us-east-1"
 cluster_version                      = "1.29"
 cluster_endpoint_public_access       = true
 cluster_endpoint_public_access_cidrs = ["0.0.0.0/0"]
-availability_zones                   = ["us-east-1a"]
+availability_zones                   = ["us-east-1a", "us-east-1b"]
 vpc_cidr                             = "10.0.0.0/16"
-private_subnet_cidrs                 = ["10.0.1.0/24"]
-public_subnet_cidrs                  = ["10.0.101.0/24"]
-intra_subnet_cidrs                   = ["10.0.201.0/24"]
+private_subnet_cidrs                 = ["10.0.1.0/24", "10.0.2.0/24"]
+public_subnet_cidrs                  = ["10.0.101.0/24", "10.0.102.0/24"]
+intra_subnet_cidrs                   = ["10.0.201.0/24", "10.0.202.0/24"]
 
 node_groups = {
   dev = {
