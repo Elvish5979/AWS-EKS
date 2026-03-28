@@ -52,7 +52,7 @@ module "eks" {
   cluster_endpoint_public_access_cidrs = var.cluster_endpoint_public_access_cidrs
   secrets_kms_key_arn                  = module.security.secrets_kms_key_arn
   cluster_role_arn                     = module.iam.cluster_role_arn
-  oidc_provider_arn                   = module.iam.oidc_provider_arn
+  oidc_provider_arn                    = module.iam.oidc_provider_arn
   aws_region                           = var.aws_region
 }
 
